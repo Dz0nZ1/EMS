@@ -13,11 +13,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controller\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\EMS.Application\EMS.Application.csproj" />
+      <ProjectReference Include="..\EMS.Infrastructure\EMS.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
