@@ -32,5 +32,21 @@ public class Reservation
    private Reservation(){}
 
    #endregion
+
+   #region Extesnions
+
+   public Reservation AddUser(ApplicationUser user)
+   {
+      User = user;
+      return this;
+   }
+
+   public Reservation AddEvent(Event eventEntity)
+   {
+      Event = eventEntity;
+      return this;
+   }
+   
+   #endregion
     
 }
