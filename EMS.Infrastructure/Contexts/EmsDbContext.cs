@@ -54,6 +54,8 @@ public class EmsDbContext(DbContextOptions<EmsDbContext> options): IdentityDbCon
     public DbSet<Category> Categories => Set<Category>();
     public DbSet<Reservation> Reservations => Set<Reservation>();
 
+    public DbSet<ApplicationUser> Users => Set<ApplicationUser>();
+
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
     {
         var result = await base.SaveChangesAsync(cancellationToken);
