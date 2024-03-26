@@ -6,6 +6,11 @@ public class Reservation
 
    public Guid Id { get; private set; }
    public DateTime ReservationDate { get; private set; } = DateTime.Today;
+   
+   public decimal Price { get; private set; }
+
+   public bool hasCupon { get; set; } = false;
+   
    public Guid EventId { get; private set; }
    public Event? Event { get; private set; }
 
