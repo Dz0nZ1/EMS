@@ -21,10 +21,12 @@ public class Reservation
 
    #region Constructors
 
-   public Reservation(DateTime reservationDate)
+   public Reservation(DateTime reservationDate, decimal price, bool hasCupon)
    {
       Id = Guid.NewGuid();
       ReservationDate = reservationDate;
+      Price = price;
+      hasCupon = hasCupon;
    }
    
    private Reservation(){}
