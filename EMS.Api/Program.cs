@@ -1,3 +1,4 @@
+using Demo.Api.Auth;
 using EMS.Api.Filters;
 using EMS.Application;
 using EMS.Infrastructure;
@@ -11,6 +12,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers(options => options.Filters.Add<ApiExceptionFilterAttribute>());
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddEmsAuthentication(builder.Configuration);
 
 var app = builder.Build();
 
