@@ -9,4 +9,6 @@ public static partial class ReservationMapper
     public static partial Domain.Entities.Reservation ToEntity(this CreateReservationDto dto);
     
     public static partial ReservationDetailsDto ToDetailsDto(this Domain.Entities.Reservation entity);
+
+    public static partial List<ReservationDetailsDto> ToListDto(this List<Domain.Entities.Reservation> reservations);
 }
