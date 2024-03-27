@@ -9,5 +9,7 @@ public static partial class CategoryMapper
     public static partial Domain.Entities.Category ToEntity(this CreateCategoryDto dto);
     
     public static partial CategoryDetailsDto ToDetailsDto(this Domain.Entities.Category entity);
-    
+
+    public static partial List<CategoryDetailsDto> ToDetailsList(this List<Domain.Entities.Category> categories);
+
 }
