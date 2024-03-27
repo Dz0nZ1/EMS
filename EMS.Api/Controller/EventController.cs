@@ -1,5 +1,6 @@
 ﻿using EMS.Application.Common.Dto.Event;
 using EMS.Application.Event.Commands.CreateEventCommand;
+using EMS.Application.Event.Commands.DeleteEventCommand;
 using EMS.Application.Event.Queries.GetEventDetailsQuery;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,5 +15,10 @@ public class EventController : ApiControllerBase
 
     [HttpPost]
     public async Task<ActionResult<EventDetailsDto>> CreateEvent(CreateEventCommand command) =>
+        Ok(await Mediator.Send(command));
+
+
+    [HttpDelete]
+    public async Task<ActionResult<string?>> DeleteEvent(DeleteEventCommand command) =>
         Ok(await Mediator.Send(command));
 }
