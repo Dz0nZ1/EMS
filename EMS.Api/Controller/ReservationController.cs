@@ -12,6 +12,6 @@ public class ReservationController : ApiControllerBase
         Ok(await Mediator.Send(command));
 
     [HttpGet]
-    public async Task<ActionResult<ReservationDetailsDto?>> GetReservationDetailsList(GetReservationDetailsListQuery query) =>
+    public async Task<ActionResult<ReservationDetailsDto?>> GetReservationDetailsList([FromQuery] GetReservationDetailsListQuery query) =>
         Ok(await Mediator.Send(query));
 }
