@@ -11,8 +11,6 @@ public class ApplicationUser : IdentityUser
    public string LastName { get; set; } = string.Empty;
 
    public IList<ApplicationUserRole> Roles { get; } = new List<ApplicationUserRole>();
-
-   public IList<EventApplicationUser>? Events { get; } = new List<EventApplicationUser>();
    
    public IList<Reservation> Reservations { get; private set; }
 
