@@ -9,4 +9,7 @@ public static partial class EventMapper
     public static partial Domain.Entities.Event ToEntity(this CreateEventDto dto);
 
     public static partial EventDetailsDto ToDetailsDto(this Domain.Entities.Event entity);
+
+
+    public static partial List<EventDetailsDto> ToDetailsList(this List<Domain.Entities.Event> events);
 }
