@@ -15,9 +15,7 @@ public class Event
     public decimal Price { get; private set; }
     public Location? Location { get; private set; }
     public Category? Category { get; private set; }
-    public IList<Reservation> Reservations { get; private set; }
-    
-    public IList<EventApplicationUser>? Users = new List<EventApplicationUser>();
+    public IEnumerable<ReservationEvent>? Reservations { get; private set; }
 
     #endregion
 
@@ -51,6 +49,7 @@ public class Event
         Location = location;
         return this;
     }
+    
 
     #endregion
 }
