@@ -45,16 +45,13 @@ public class EmsDbContext(DbContextOptions<EmsDbContext> options): IdentityDbCon
         optionsBuilder.UseNpgsql("Host=localhost;Username=postgres;Password=root;Database=EventMng");
     }
 
-    // public DbSet<Course> Courses => Set<Course>();
-    // public DbSet<Enrollment> Enrollments => Set<Enrollment>();
-
-
+    
     public DbSet<Event> Events => Set<Event>();
     public DbSet<Location> Locations => Set<Location>();
     public DbSet<Category> Categories => Set<Category>();
     public DbSet<Reservation> Reservations => Set<Reservation>();
-
     public DbSet<ApplicationUser> Users => Set<ApplicationUser>();
+    public DbSet<ReservationEvent> ReservationEvents => Set<ReservationEvent>();
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
     {
