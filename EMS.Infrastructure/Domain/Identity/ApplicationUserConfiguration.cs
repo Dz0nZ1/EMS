@@ -40,10 +40,6 @@ public class ApplicationUserConfiguration : IEntityTypeConfiguration<Application
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
         
-        builder.HasMany(u => u.Events)
-            .WithOne(eau => eau.User)
-            .HasForeignKey(eau => eau.UserId)
-            .OnDelete(DeleteBehavior.Cascade); 
 
         builder.HasMany(u => u.Reservations)
             .WithOne(r => r.User)
