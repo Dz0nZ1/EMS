@@ -1,6 +1,7 @@
 ﻿using EMS.Application.Common.Dto.Event;
 using EMS.Application.Event.Commands.CreateEventCommand;
 using EMS.Application.Event.Commands.DeleteEventCommand;
+using EMS.Application.Event.Queries.GetEventDetailsListQuery;
 using EMS.Application.Event.Queries.GetEventDetailsQuery;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,10 @@ public class EventController : ApiControllerBase
 
     [HttpGet]
     public async Task<ActionResult<EventDetailsDto>> GetEventDetails([FromQuery] GetEventDetailsQuery query) =>
+        Ok(await Mediator.Send(query));
+
+    [HttpGet]
+    public async Task<ActionResult<EventDetailsDto>> GetEventDetailsList([FromQuery] GetEventDetailsListQuery query) =>
         Ok(await Mediator.Send(query));
 
     [HttpPost]
