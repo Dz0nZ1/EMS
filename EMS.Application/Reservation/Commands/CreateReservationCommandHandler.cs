@@ -2,6 +2,7 @@ using EMS.Application.Common.Dto.Reservation;
 using EMS.Application.Common.Exceptions;
 using EMS.Application.Common.interfaces;
 using EMS.Application.Common.Mappers.Reservation;
+using EMS.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,18 +12,28 @@ public class CreateReservationCommandHandler(IEmsDbContext dbContext) : IRequest
 {
     public async Task<ReservationDetailsDto?> Handle(CreateReservationCommand request, CancellationToken cancellationToken)
     {
-        var user = await dbContext.Users.Where(x => x.Id.Equals(request.Reservation.UserId))
-            .FirstOrDefaultAsync(cancellationToken) ?? throw new NotFoundException("User not found");
+        var user = await dbContext.Users.FirstOrDefaultAsync(x => x.Id == request.Reservation.UserId, cancellationToken)
+                   ?? throw new NotFoundException("User not found");
+
+        var reservation = request.Reservation.ToEntity().AddUser(user);
         
-        var eventEntity = await dbContext.Events.Where(x => x.Id.Equals(request.Reservation.EventId))
-            .FirstOrDefaultAsync(cancellationToken) ?? throw new NotFoundException("Event not found");
-
-        var reservation = request.Reservation.ToEntity().AddUser(user).AddEvent(eventEntity);
-
         await dbContext.Reservations.AddAsync(reservation, cancellationToken);
-        await dbContext.SaveChangesAsync(cancellationToken: cancellationToken);
+        
+        foreach (var eventId in request.Reservation.EventIds)
+        {
+            var eventEntity = await dbContext.Events.FirstOrDefaultAsync(x => x.Id == eventId, cancellationToken)
+                              ?? throw new NotFoundException($"Event with ID {eventId} not found");
 
-        return reservation.ToDetailsDto();
+            var reservationEvent = new ReservationEvent();
+            reservationEvent.AddReservationEvent(eventEntity, reservation);
+
+            await dbContext.ReservationEvents.AddAsync(reservationEvent, cancellationToken);
+        }
+        
+        
+        await dbContext.SaveChangesAsync(cancellationToken);
+
+        return reservation.ToReservationDetailsDto();
 
     }
 }
