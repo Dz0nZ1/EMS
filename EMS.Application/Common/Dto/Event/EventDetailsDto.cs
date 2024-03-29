@@ -12,13 +12,13 @@ public record EventDetailsDto(
     DateTime StartTime,
     DateTime EndTime,
     bool IsFree,
-    decimal Price, EventInfoDto EventInfoDto)
+    decimal Price, EventInfoDto EventInfo)
 
 {
     
     internal EventDetailsDto AddEventInfo(EventInfoDto eventInfoDto)
     {
-        return this with { EventInfoDto = eventInfoDto };
+        return this with { EventInfo = eventInfoDto };
     }
     
     
