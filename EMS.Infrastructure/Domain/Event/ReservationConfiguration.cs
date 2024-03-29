@@ -9,16 +9,11 @@ public class ReservationConfiguration : IEntityTypeConfiguration<Reservation>
     public void Configure(EntityTypeBuilder<Reservation> builder)
     {
         builder.ToTable("Reservations");
+
+        builder.Property(x => x.hasCoupon).HasColumnName("hasCoupon");
         
         builder.HasKey(r => r.Id);
         
-        builder.HasOne(r => r.Event)
-            .WithMany(e => e.Reservations)
-            .HasForeignKey(r => r.EventId)
-            .IsRequired(false) 
-            .OnDelete(DeleteBehavior.Cascade);
-
-       
         builder.HasOne(r => r.User)
             .WithMany(u => u.Reservations)
             .HasForeignKey(r => r.UserId)
