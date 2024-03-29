@@ -26,5 +26,11 @@ public static partial class ReservationMapper
         return newDtoList;
     }
 
-    public static partial List<ReservationDetailsDto> ToListDto(this List<Domain.Entities.Reservation> reservations);
+    public static partial List<ReservationDetailsDto> ToListDto(this List<Domain.Entities.Reservation> entities);
+
+    public static void ToEntity(this Domain.Entities.Reservation entity, UpdateReservationDto dto)
+    {
+        entity.UpdateReservation(dto.Price, dto.HasCoupon);
+    }
+    
 }
