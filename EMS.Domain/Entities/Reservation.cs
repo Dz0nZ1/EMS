@@ -9,24 +9,23 @@ public class Reservation
    
    public decimal Price { get; private set; }
 
-   public bool hasCupon { get; set; } = false;
+   public bool hasCoupon { get; set; } = false;
    
-   public Guid EventId { get; private set; }
-   public Event? Event { get; private set; }
-
    public string UserId { get; private set; }
-   public ApplicationUser? User { get; private set; }
+   public ApplicationUser User { get; private set; }
+   
+   public IEnumerable<ReservationEvent>? Events { get; private set; }
 
    #endregion
 
    #region Constructors
 
-   public Reservation(DateTime reservationDate, decimal price, bool hasCupon)
+   public Reservation(DateTime reservationDate, decimal price, bool hasCoupon)
    {
       Id = Guid.NewGuid();
       ReservationDate = reservationDate;
       Price = price;
-      hasCupon = hasCupon;
+      hasCoupon = hasCoupon;
    }
    
    private Reservation(){}
@@ -41,11 +40,12 @@ public class Reservation
       return this;
    }
 
-   public Reservation AddEvent(Event eventEntity)
+   public Reservation AddCoupon(bool coupon)
    {
-      Event = eventEntity;
+      hasCoupon = coupon;
       return this;
    }
+   
    
    #endregion
     
