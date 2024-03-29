@@ -15,7 +15,8 @@ public class GetEventDetailsQueryHandler(IEmsDbContext dbContext) : IRequestHand
             .Include(x => x.Category)
             .Include(x => x.Location)
             .Include(x => x.Reservations)
-            .Include(x => x.Users)
+            !.ThenInclude(x => x.Reservation)
+            .ThenInclude(x => x.User)
             .FirstOrDefaultAsync(cancellationToken: cancellationToken) ?? throw new NotFoundException("Event not found");
 
         return eventEntity.ToDetailsDto();
