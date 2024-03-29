@@ -11,7 +11,7 @@ public static partial class ReservationMapper
 
     public static ReservationDetailsDto ToReservationDetailsDto(this Domain.Entities.Reservation entity)
     {
-        return new ReservationDetailsDto(entity.ReservationDate, entity.Price, entity.hasCoupon, new UserDetailsDto(entity.User.FirstName, entity.User.LastName));
+        return new ReservationDetailsDto(entity.ReservationDate, entity.Price, entity.HasCoupon, new UserDetailsDto(entity.User.FirstName, entity.User.LastName));
     }
 
     public static List<ReservationDetailsDto> ToReservationDetailsList(

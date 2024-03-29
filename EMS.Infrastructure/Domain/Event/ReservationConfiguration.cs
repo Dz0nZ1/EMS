@@ -9,8 +9,6 @@ public class ReservationConfiguration : IEntityTypeConfiguration<Reservation>
     public void Configure(EntityTypeBuilder<Reservation> builder)
     {
         builder.ToTable("Reservations");
-
-        builder.Property(x => x.hasCoupon).HasColumnName("hasCoupon");
         
         builder.HasKey(r => r.Id);
         

@@ -9,7 +9,7 @@ public class Reservation
    
    public decimal Price { get; private set; }
 
-   public bool hasCoupon { get; set; } = false;
+   public bool HasCoupon { get; set; } = false;
    
    public string UserId { get; private set; }
    public ApplicationUser User { get; private set; }
@@ -42,7 +42,7 @@ public class Reservation
 
    public Reservation AddCoupon(bool coupon)
    {
-      hasCoupon = coupon;
+      HasCoupon = coupon;
       return this;
    }
    
