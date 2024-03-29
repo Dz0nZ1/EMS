@@ -45,7 +45,15 @@ public class Reservation
       HasCoupon = coupon;
       return this;
    }
-   
+
+
+   public Reservation UpdateReservation( decimal price, bool hasCoupon)
+   {
+      Price = price;
+      HasCoupon = hasCoupon;
+      return this;
+   }
+    
    
    #endregion
     
