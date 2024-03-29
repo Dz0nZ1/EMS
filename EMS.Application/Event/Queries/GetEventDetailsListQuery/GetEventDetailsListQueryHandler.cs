@@ -10,11 +10,11 @@ public class GetEventDetailsListQueryHandler(IEmsDbContext dbContext) : IRequest
 {
     public async Task<List<EventDetailsDto>> Handle(GetEventDetailsListQuery request, CancellationToken cancellationToken)
     {
-        var events = await dbContext.Events.Include(x => x.Category)
+        var events = await dbContext.Events
+            .Include(x => x.Category)
             .Include(x => x.Location)
-            .Include(x => x.Reservations)
-            .Include(x => x.Users).ToListAsync(cancellationToken: cancellationToken);
-
-        return events.ToDetailsList();
+            .Include(x => x.Reservations)!.ThenInclude(x => x.Reservation)
+            .ThenInclude(x => x.User).ToListAsync(cancellationToken: cancellationToken);
+       return events.ToDetailsList();
     }
 }
