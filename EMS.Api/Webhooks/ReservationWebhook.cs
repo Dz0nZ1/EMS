@@ -1,5 +1,5 @@
 using EMS.Api.Auth.Constants;
-using EMS.Application.Reservation.Commands;
+using EMS.Application.Reservation.Commands.CreateReservationCommand;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
