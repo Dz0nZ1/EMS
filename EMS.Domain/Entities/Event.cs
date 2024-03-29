@@ -49,7 +49,19 @@ public class Event
         Location = location;
         return this;
     }
-    
+
+
+    public Event UpdateEvent(string name, string description, DateTime startDate, DateTime endDate, bool isFree,
+        decimal price)
+    {
+        Name = name;
+        Description = description;
+        StartTime = startDate;
+        EndTime = endDate;
+        IsFree = isFree;
+        Price = price;
+        return this;
+    }
 
     #endregion
 }
