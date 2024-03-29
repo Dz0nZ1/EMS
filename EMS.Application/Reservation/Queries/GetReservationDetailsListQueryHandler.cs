@@ -10,7 +10,7 @@ public class GetReservationDetailsListQueryHandler(IEmsDbContext dbContext) : IR
 {
     public async Task<List<ReservationDetailsDto>> Handle(GetReservationDetailsListQuery request, CancellationToken cancellationToken)
     {
-        var reservations = await dbContext.Reservations.ToListAsync(cancellationToken);
+        var reservations = await dbContext.Reservations.Include(x => x.User).ToListAsync(cancellationToken);
         return reservations.ToListDto();
     }
 }
