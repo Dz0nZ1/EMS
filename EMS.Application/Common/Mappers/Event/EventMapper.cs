@@ -38,5 +38,11 @@ public static partial class EventMapper
     }
 
 
-    public static partial List<EventDetailsDto> ToDetailsList(this List<Domain.Entities.Event> events);
+    public static partial List<EventDetailsDto> ToDetailsList(this List<Domain.Entities.Event> entities);
+
+
+    public static void ToEntity(this Domain.Entities.Event entity, UpdateEventDto dto)
+    {
+        entity.UpdateEvent(dto.Name, dto.Description, dto.StartTime, dto.EndTime, dto.IsFree, dto.Price);
+    }
 }
