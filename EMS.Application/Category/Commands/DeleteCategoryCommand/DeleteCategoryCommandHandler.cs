@@ -15,6 +15,6 @@ public class DeleteCategoryCommandHandler(IEmsDbContext dbContext) : IRequestHan
 
         dbContext.Categories.Remove(category);
         await dbContext.SaveChangesAsync(cancellationToken: cancellationToken);
-        return "Deleted successfully";
+        return "Category deleted successfully";
     }
 }
