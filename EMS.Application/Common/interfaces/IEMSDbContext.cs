@@ -11,6 +11,8 @@ public interface IEmsDbContext
     public DbSet<Domain.Entities.Reservation> Reservations { get;}
     
     public DbSet<Domain.Entities.ApplicationUser> Users { get; }
+    
+    public DbSet<Domain.Entities.ReservationEvent> ReservationEvents { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }
