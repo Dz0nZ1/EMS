@@ -29,4 +29,17 @@ public class Location
     private Location(){}
 
     #endregion
+
+    #region Extensions
+
+    public Location UpdateLocation(string name, string country, string city, string address)
+    {
+        Name = name;
+        Country = country;
+        City = city;
+        Address = address;
+        return this;
+    }
+
+    #endregion
 }
