@@ -280,7 +280,8 @@ namespace EMS.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<bool>("hasCoupon")
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasColumnName("hasCoupon");
 
                     b.HasKey("Id");
 
