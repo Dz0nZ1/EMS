@@ -24,4 +24,16 @@ public class Category
    private Category(){}
 
    #endregion
+
+
+   #region Extensions
+
+   public Category UpdateCategory(string name, string description)
+   {
+      Name = name;
+      Description = description;
+      return this;
+   }
+
+   #endregion
 }
