@@ -9,4 +9,6 @@ public static partial class LocationMapper
     public static partial Domain.Entities.Location ToEntity(this CreateLocationDto dto);
     
     public static partial LocationDetailsDto ToDetailsDto(this Domain.Entities.Location entity);
+
+    public static partial List<LocationDetailsDto> ToDetailsList(this List<Domain.Entities.Location> locations);
 }
