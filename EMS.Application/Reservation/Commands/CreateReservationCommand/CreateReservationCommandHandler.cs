@@ -6,11 +6,11 @@ using EMS.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace EMS.Application.Reservation.Commands;
+namespace EMS.Application.Reservation.Commands.CreateReservationCommand;
 
 public class CreateReservationCommandHandler(IEmsDbContext dbContext) : IRequestHandler<CreateReservationCommand, ReservationDetailsDto?>
 {
-    public async Task<ReservationDetailsDto?> Handle(CreateReservationCommand request, CancellationToken cancellationToken)
+    public async Task<ReservationDetailsDto?> Handle(Commands.CreateReservationCommand.CreateReservationCommand request, CancellationToken cancellationToken)
     {
         var user = await dbContext.Users.FirstOrDefaultAsync(x => x.Id == request.Reservation.UserId, cancellationToken)
                    ?? throw new NotFoundException("User not found");
