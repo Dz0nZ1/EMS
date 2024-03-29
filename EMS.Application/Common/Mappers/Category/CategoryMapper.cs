@@ -10,6 +10,11 @@ public static partial class CategoryMapper
     
     public static partial CategoryDetailsDto ToDetailsDto(this Domain.Entities.Category entity);
 
-    public static partial List<CategoryDetailsDto> ToDetailsList(this List<Domain.Entities.Category> categories);
+    public static partial List<CategoryDetailsDto> ToDetailsList(this List<Domain.Entities.Category> entities);
+
+    public static void ToEntity(this Domain.Entities.Category category, UpdateCategoryDto dto)
+    {
+        category.UpdateCategory(dto.Name, dto.Description);
+    }
 
 }
