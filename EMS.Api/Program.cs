@@ -1,4 +1,4 @@
-using Demo.Api.Auth;
+using EMS.Api.Auth;
 using EMS.Api.Filters;
 using EMS.Application;
 using EMS.Infrastructure;
@@ -27,3 +27,6 @@ app.UseHttpsRedirection();
 app.MapControllers();
 
 app.Run();
+
+
+public partial class Program{}
