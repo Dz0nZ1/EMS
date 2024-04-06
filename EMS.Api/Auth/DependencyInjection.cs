@@ -2,7 +2,7 @@
 using EMS.Api.Auth.Options;
 using EMS.Api.Auth.Schemes;
 
-namespace Demo.Api.Auth;
+namespace EMS.Api.Auth;
 
 public static class DependencyInjection
 {
