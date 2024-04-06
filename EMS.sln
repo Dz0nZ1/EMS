@@ -8,6 +8,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Domain", "EMS.Domain\EM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Infrastructure", "EMS.Infrastructure\EMS.Infrastructure.csproj", "{8729B2B8-AA9A-437A-AB80-E6CEC8FD72F0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F65BB83D-8882-4DE2-A6A5-AA40CF901BB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.FunctionalTests", "EMS.FunctionalTests\EMS.FunctionalTests.csproj", "{95E8F5BE-A63D-48A6-95AD-1705FB463635}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,12 @@ Global
 		{8729B2B8-AA9A-437A-AB80-E6CEC8FD72F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8729B2B8-AA9A-437A-AB80-E6CEC8FD72F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8729B2B8-AA9A-437A-AB80-E6CEC8FD72F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95E8F5BE-A63D-48A6-95AD-1705FB463635}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95E8F5BE-A63D-48A6-95AD-1705FB463635}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95E8F5BE-A63D-48A6-95AD-1705FB463635}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95E8F5BE-A63D-48A6-95AD-1705FB463635}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{95E8F5BE-A63D-48A6-95AD-1705FB463635} = {F65BB83D-8882-4DE2-A6A5-AA40CF901BB9}
 	EndGlobalSection
 EndGlobal
