@@ -1,6 +1,7 @@
 using System.Net;
 using System.Net.Http.Json;
 using EMS.Application.Common.Dto.Category;
+using Ems.BaseTests.Builders.Domain;
 using EMS.Infrastructure.Contexts;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -8,31 +9,25 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace EMS.FunctionalTests.Category.Queries;
 
-public class GetProductDetailsQueryTests(EmsWebApplicationFactory<Program> factory)
-    : IClassFixture<EmsWebApplicationFactory<Program>>
+public class GetProductDetailsQueryTests : BaseTest
 {
     
-    private readonly HttpClient _client = factory.CreateClient();
-
 
     [Fact]
     public async Task GetCategoryDetailsQueryTest_GivenValidCategoryId_StatusOk()
     {
-
-        using var scope = factory.Services.CreateScope();
-        var dbContext = scope.ServiceProvider.GetRequiredService<EmsDbContext>();
         
 
         //Given
-        var category = new Domain.Entities.Category("Programming", "All topics related to Programming");
+        var category = new CategoryBuilder().Build();
 
-        await dbContext.Categories.AddAsync(category);
+        await EmsDbContext.Categories.AddAsync(category);
 
-        await dbContext.SaveChangesAsync();
+        await EmsDbContext.SaveChangesAsync();
         
         //When
 
-        var response = await _client.GetAsync($"api/v1/Category/GetCategoryDetails?CategoryId={category.Id.ToString()}");
+        var response = await Client.GetAsync($"api/v1/Category/GetCategoryDetails?CategoryId={category.Id.ToString()}");
 
 
         //Then
@@ -49,4 +44,54 @@ public class GetProductDetailsQueryTests(EmsWebApplicationFactory<Program> facto
         
     }
     
+    [Fact]
+    public async Task GetCategoryDetailsQueryTest_GivenCategoryIdIsNull_BadRequest()
+    {
+        //Given
+        
+  
+        //When
+
+        var response = await Client.GetAsync($"api/v1/Category/GetCategoryDetails");
+
+
+        //Then
+
+        using var _ = new AssertionScope();
+
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        
+        
+    }
+    
+    
+    [Fact]
+    public async Task GetCategoryDetailsQueryTest_GivenInvalidCategoryId_NotFound()
+    {
+
+        
+        //Given
+        var category = new CategoryBuilder().Build();
+
+        await EmsDbContext.Categories.AddAsync(category);
+
+        await EmsDbContext.SaveChangesAsync();
+        
+        //When
+
+        var response = await Client.GetAsync($"api/v1/Category/GetCategoryDetails?CategoryId={Guid.NewGuid().ToString()}");
+
+
+        //Then
+
+        using var _ = new AssertionScope();
+
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+        
+        
+    }
+
+    public GetProductDetailsQueryTests(EmsWebApplicationFactory<Program> factory) : base(factory)
+    {
+    }
 }
