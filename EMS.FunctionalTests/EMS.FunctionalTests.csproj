@@ -29,11 +29,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\EMS.Api\EMS.Api.csproj" />
+      <ProjectReference Include="..\Ems.BaseTests\Ems.BaseTests.csproj" />
       <ProjectReference Include="..\EMS.Infrastructure\EMS.Infrastructure.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Category\Commands\" />
     </ItemGroup>
 
 </Project>
