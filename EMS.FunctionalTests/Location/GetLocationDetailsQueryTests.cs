@@ -64,7 +64,31 @@ public class GetLocationDetailsQueryTests : BaseTest
 
 
     }
-    
-    
-    
+
+
+
+    [Fact]
+    public async Task GetLocationDetailsQueryTest_GivenInvalidLocationId_NotFound()
+    {
+        //Given
+        var location = new LocationBuilder().Build();
+
+        await EmsDbContext.Locations.AddAsync(location);
+        await EmsDbContext.SaveChangesAsync();
+        
+        //When
+
+        var response =
+            await Client.GetAsync($"api/v1/Location/GetLocationDetails?CategoryId={Guid.NewGuid().ToString()}");
+
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+        
+        //Then
+        
+        using var _ = new AssertionScope();
+        
+    }
+
+
+
 }
