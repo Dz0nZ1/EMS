@@ -47,6 +47,23 @@ public class GetLocationDetailsQueryTests : BaseTest
         content.Country.Should().Be(location.Country);
         
     }
+
+
+    [Fact]
+    public async Task GetLocationDetailsQueryTest_GivenLocationIdIsNull_BadRequest()
+    {
+        //Given
+
+        var response = await Client.GetAsync($"api/v1/Location/GetLocationDetails");
+        
+        //Then
+
+        using var _ = new AssertionScope();
+
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+
+
+    }
     
     
     
