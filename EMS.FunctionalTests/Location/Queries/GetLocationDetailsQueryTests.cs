@@ -5,11 +5,11 @@ using Ems.BaseTests.Builders.Domain;
 using FluentAssertions;
 using FluentAssertions.Execution;
 
-namespace EMS.FunctionalTests.Location;
+namespace EMS.FunctionalTests.Location.Queries;
 
 public class GetLocationDetailsQueryTests : BaseTest
 {
-    protected GetLocationDetailsQueryTests(EmsWebApplicationFactory<Program> factory) : base(factory)
+    public GetLocationDetailsQueryTests(EmsWebApplicationFactory<Program> factory) : base(factory)
     {
         
     }
@@ -79,7 +79,7 @@ public class GetLocationDetailsQueryTests : BaseTest
         //When
 
         var response =
-            await Client.GetAsync($"api/v1/Location/GetLocationDetails?CategoryId={Guid.NewGuid().ToString()}");
+            await Client.GetAsync($"api/v1/Location/GetLocationDetails?LocationId={Guid.NewGuid().ToString()}");
 
         response.StatusCode.Should().Be(HttpStatusCode.NotFound);
         
