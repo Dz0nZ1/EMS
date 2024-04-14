@@ -15,5 +15,8 @@ public class BaseTest : IClassFixture<EmsWebApplicationFactory<Program>>
         Client = factory.CreateClient();
         var scope = factory.Services.CreateScope();
         EmsDbContext = scope.ServiceProvider.GetRequiredService<EmsDbContext>();
+        // MockCategoryService = factory.MockCategoryService;
+        // MockLocationService = factory.MockLocationService;
+
     }
 }
