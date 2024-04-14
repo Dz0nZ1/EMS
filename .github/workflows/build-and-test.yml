@@ -1,4 +1,4 @@
-name: Demo App start Tests
+name: EMS App start Tests
 
 on:
   push:
