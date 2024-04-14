@@ -19,6 +19,6 @@ jobs:
       - name: Set Test Environment Variable
         run: echo "ASPNETCORE_ENVIRONMENT=Test" >> $GITHUB_ENV
       - name: Build
-        run: dotnet build --configuration Release Demo.sln
+        run: dotnet build --configuration Release EMS.sln
       - name: Test
         run: dotnet test --configuration Release EMS.sln --no-build --verbosity normal --collect:"XPlat Code Coverage" --logger trx --results-directory coverage
