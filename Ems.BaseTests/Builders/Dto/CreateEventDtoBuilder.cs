@@ -1,4 +1,5 @@
 using EMS.Application.Common.Dto.Event;
+using EMS.Domain.Enums;
 
 namespace Ems.BaseTests.Builders.Dto;
 
@@ -12,9 +13,10 @@ public class CreateEventDtoBuilder
     private decimal _price = 5000;
     private string _locationId = "Default Location";
     private string _categoryId = "Default Category";
+    private int _eventSize = 1;
     
     
-    public CreateEventDto Build() => new (_name, _description, _startTime, _endTime, _isFree, _price, _locationId, _categoryId);
+    public CreateEventDto Build() => new (_name, _description, _startTime, _endTime, _isFree, _price, _locationId, _categoryId, _eventSize);
 
     public CreateEventDtoBuilder WithName(string name)
     {
@@ -61,6 +63,12 @@ public class CreateEventDtoBuilder
     public CreateEventDtoBuilder WithCategoryId(string categoryId)
     {
         _categoryId = categoryId;
+        return this;
+    }
+
+    public CreateEventDtoBuilder WithEventSize(int eventSize)
+    {
+        _eventSize = eventSize;
         return this;
     }
     
