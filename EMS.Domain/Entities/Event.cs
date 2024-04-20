@@ -1,3 +1,6 @@
+using Ardalis.GuardClauses;
+using EMS.Domain.Enums;
+
 namespace EMS.Domain.Entities;
 
 public class Event 
@@ -16,20 +19,23 @@ public class Event
     public Location? Location { get; private set; }
     public Category? Category { get; private set; }
     public IEnumerable<ReservationEvent>? Reservations { get; private set; }
+    
+    public EventSizeEnum EventSize { get; private set; }
 
     #endregion
 
     #region Constructors
 
-    public Event(string name, string description, DateTime startTime, DateTime endTime, bool isFree, decimal price)
+    public Event(string name, string description, DateTime startTime, DateTime endTime, bool isFree, decimal price, EventSizeEnum eventSize)
     {
         Id = Guid.NewGuid();
-        Name = name;
+        Name = Guard.Against.NullOrEmpty(name);
         Description = description;
         StartTime = startTime;
         EndTime = endTime;
         IsFree = isFree;
         Price = price;
+        EventSize = Guard.Against.Null(eventSize);
     }
     
     private Event(){}
