@@ -7,6 +7,7 @@ using EMS.Application.Event.Commands.CreateEventCommand;
 using Ems.BaseTests.Builders.Commands;
 using Ems.BaseTests.Builders.Domain;
 using Ems.BaseTests.Builders.Dto;
+using EMS.Domain.Enums;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Microsoft.OpenApi.Extensions;
@@ -41,8 +42,11 @@ public class CreateEventCommandTests : BaseTest
         await EmsDbContext.SaveChangesAsync();
         
 
-        var eventDto = new CreateEventDtoBuilder().WithCategoryId(category.Id.ToString())
-            .WithLocationId(location.Id.ToString()).Build();
+        var eventDto = new CreateEventDtoBuilder()
+            .WithCategoryId(category.Id.ToString())
+            .WithLocationId(location.Id.ToString())
+            .WithEventSize(EventSizeEnum.Small)
+            .Build();
 
         // Setting the return value of mock services
         // MockCategoryService.Setup(x => x.CreateAsync()).Returns("Category");
