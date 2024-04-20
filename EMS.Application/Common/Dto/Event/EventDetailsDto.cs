@@ -12,7 +12,7 @@ public record EventDetailsDto(
     DateTime StartTime,
     DateTime EndTime,
     bool IsFree,
-    decimal Price, EventInfoDto EventInfo)
+    decimal Price, string EventSizeEnumName, List<string> SubEvents, EventInfoDto EventInfo)
 
 {
     
