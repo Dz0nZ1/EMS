@@ -1,3 +1,4 @@
+using EMS.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -20,5 +21,7 @@ public class EventConfiguration : IEntityTypeConfiguration<EMS.Domain.Entities.E
         builder.HasIndex("LocationId");
         builder.HasOne(x => x.Location).WithMany(x => x.Events).HasForeignKey("LocationId")
             .OnDelete(DeleteBehavior.Cascade);
+        builder.Property(x => x.EventSize).HasDefaultValue(EventSizeEnum.Small)
+            .HasConversion(x => x.Value, x => EventSizeEnum.FromValue(x));
     }
 }

@@ -4,6 +4,7 @@ using EMS.Application.Category.Commands.UpdateCategoryCommand;
 using EMS.Application.Category.Queries.GetCategoryDetailsListQuery;
 using EMS.Application.Category.Queries.GetCategoryDetailsQuery;
 using EMS.Application.Common.Dto.Category;
+using EMS.Domain.Common.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EMS.Api.Controller;
@@ -31,4 +32,14 @@ public class CategoryController : ApiControllerBase
     [HttpDelete]
     public async Task<ActionResult<string>> DeleteCategory(DeleteCategoryCommand command) =>
         Ok(await Mediator.Send(command));
+
+
+   //Test method for deserialization (integration with another software)
+   [HttpPost]
+   public async Task<ActionResult<CategoryDetailsDto>> CreateCategoryTest(CreateCategoryTestDto dto)
+   {
+       var command = dto.Json.Deserialize<CreateCategoryCommand>(SerializerExtensions.SettingsWebOptions);
+
+       return Ok(await Mediator.Send(command!));
+   }
 }

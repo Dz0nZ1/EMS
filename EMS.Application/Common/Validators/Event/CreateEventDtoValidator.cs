@@ -1,4 +1,6 @@
 using EMS.Application.Common.Dto.Event;
+using EMS.Domain.Common.Extensions;
+using EMS.Domain.Enums;
 using FluentValidation;
 
 namespace EMS.Application.Common.Validators.Event;
@@ -36,5 +38,9 @@ public class CreateEventDtoValidator : AbstractValidator<CreateEventDto>
             .NotEmpty()
             .Matches(@"^({){0,1}[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}(}){0,1}$")
             .WithMessage("Category ID is required.");
+
+        RuleFor(dto => dto.EventSize)
+            .Must(x => EventSizeEnum.TryFromValue(x, out _))
+            .WithMessage(_ => $"EventSize is not valid, EventSize must be in lis of {EnumExtensions.CategoryValidList}");
     }
 }
