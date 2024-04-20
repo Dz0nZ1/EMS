@@ -1,6 +1,6 @@
 using FluentValidation.Results;
 
-namespace CourseManagement.Application.Common.Extensions;
+namespace EMS.Application.Common.Extensions;
 
 public static class ValidationExtensions
 {

@@ -1,4 +1,4 @@
-using CourseManagement.Application.Common.Extensions;
+using EMS.Application.Common.Extensions;
 using FluentValidation;
 using MediatR;
 using ValidationException = EMS.Application.Common.Exceptions.ValidationException;
