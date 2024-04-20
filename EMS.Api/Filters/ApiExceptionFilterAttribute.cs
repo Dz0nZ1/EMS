@@ -16,7 +16,8 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
             { typeof(ValidationException), HandleValidationException },
             {typeof(FluentValidation.ValidationException), HandleFluentValidationException},
             {typeof(NotFoundException), HandleNotFoundException},
-            {typeof(UnauthorizedAccessException), HandleUnauthorizedAccessException}
+            {typeof(UnauthorizedAccessException), HandleUnauthorizedAccessException},
+            {typeof(ArgumentNullException), HandleArgumentNullException}
         };
     }
 
@@ -99,6 +100,34 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
             Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1"
         };
         context.Result = new BadRequestObjectResult(details);
+        context.ExceptionHandled = true;
+    }
+
+    private void HandleArgumentNullException(ExceptionContext context)
+    {
+        var exception = (ArgumentNullException)context.Exception;
+        var details = new ProblemDetails
+        {
+            Status = StatusCodes.Status400BadRequest,
+            Title = "Argument Null Exception",
+            Detail = exception.Message,
+            Instance = context.HttpContext.Request.Path
+        };
+        
+        details.Extensions.Add("ArgumentName", exception.ParamName);
+        
+        context.HttpContext.Response.Clear();
+        context.HttpContext.Response.ContentType = "application/problem+json";
+        
+        var serializer = new Newtonsoft.Json.JsonSerializer();
+        using (var writer = new StreamWriter(context.HttpContext.Response.Body))
+        {
+            serializer.Serialize(writer, details);
+            writer.Flush();
+        }
+        
+        context.Result = new BadRequestObjectResult(details);
+
         context.ExceptionHandled = true;
     }
     
