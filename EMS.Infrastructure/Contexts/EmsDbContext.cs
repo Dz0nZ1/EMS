@@ -52,7 +52,7 @@ public class EmsDbContext(DbContextOptions<EmsDbContext> options): IdentityDbCon
     public DbSet<Location> Locations => Set<Location>();
     public DbSet<Category> Categories => Set<Category>();
     public DbSet<Reservation> Reservations => Set<Reservation>();
-    public DbSet<ApplicationUser> Users => Set<ApplicationUser>();
+    public override DbSet<ApplicationUser> Users => Set<ApplicationUser>();
     public DbSet<ReservationEvent> ReservationEvents => Set<ReservationEvent>();
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
