@@ -4,6 +4,7 @@ using EMS.Application.Common.Mappers.Category;
 using EMS.Application.Common.Mappers.Location;
 using EMS.Application.Common.Mappers.Reservation;
 using EMS.Application.Common.Mappers.User;
+using EMS.Domain.Enums;
 using Riok.Mapperly.Abstractions;
 
 namespace EMS.Application.Common.Mappers.Event;
@@ -11,7 +12,12 @@ namespace EMS.Application.Common.Mappers.Event;
 [Mapper]
 public static partial class EventMapper
 {
-    public static partial Domain.Entities.Event ToEntity(this CreateEventDto dto);
+    public static Domain.Entities.Event ToEntity(this CreateEventDto dto)
+    {
+        return new Domain.Entities.Event(dto.Name, dto.Description, dto.StartTime, dto.EndTime, dto.IsFree, dto.Price, EventSizeEnum.FromValue(dto.EventSize));
+
+    }
+    
     
     public static EventDetailsDto ToDetailsDto(this Domain.Entities.Event entity)
     {
@@ -33,6 +39,8 @@ public static partial class EventMapper
             entity.EndTime,
             entity.IsFree,
             entity.Price,
+            entity.Category.Name,
+            entity.EventSize.SubEvents.Select(x => x.Name).ToList(),
             eventInfo
         );
     }
