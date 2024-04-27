@@ -17,9 +17,9 @@ public class GetCategoryDetailsQueryHandler(IEmsDbContext dbContext, IOptions<Ae
         var category = await dbContext.Categories.Where(x => x.Id.ToString().Equals(request.CategoryId))
             .FirstOrDefaultAsync(cancellationToken: cancellationToken) ?? throw new NotFoundException("Category not found");
 
-        var testPassword = "Nikola123";
-        var testPassEncrypt = testPassword.Encrypt(aesConfiguration.Value.Key);
-        var testPassDecrypt = testPassEncrypt.Decrypt(aesConfiguration.Value.Key);
+        // var testPassword = "Nikola123";
+        // var testPassEncrypt = testPassword.Encrypt(aesConfiguration.Value.Key);
+        // var testPassDecrypt = testPassEncrypt.Decrypt(aesConfiguration.Value.Key);
         
 
         return category.ToDetailsDto();
