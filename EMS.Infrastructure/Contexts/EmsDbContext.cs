@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EMS.Infrastructure.Contexts;
 
-public class EmsDbContext: IdentityDbContext<ApplicationUser,
+public class EmsDbContext(DbContextOptions<EmsDbContext> options): IdentityDbContext<ApplicationUser,
     ApplicationRole,
     string,
     IdentityUserClaim<string>,
@@ -16,7 +16,7 @@ public class EmsDbContext: IdentityDbContext<ApplicationUser,
     IdentityUserLogin<string>,
     IdentityRoleClaim<string>,
     IdentityUserToken<string>
->, IEmsDbContext
+>(options), IEmsDbContext
 {
     protected override void OnModelCreating(ModelBuilder builder)
     {
