@@ -5,8 +5,10 @@ namespace EMS.Application.Location.Queries.GetLocationDetailsQuery;
 
 public class GetLocationDetailsQueryValidator : AbstractValidator<GetLocationDetailsQuery>
 {
-    // public GetLocationDetailsQueryValidator()
-    // {
-    //     RuleFor(x => x.LocationId).SetValidator(new GetDetailsValidator());
-    // }
+    public GetLocationDetailsQueryValidator()
+    {
+        RuleFor(x => x.LocationId)
+            .Matches(@"^({){0,1}[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}(}){0,1}$")
+            .WithMessage("ID is required.");
+    }
 }
