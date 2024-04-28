@@ -1,4 +1,5 @@
 using EMS.Application.Common.Exceptions;
+using EMS.Infrastructure.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -17,7 +18,8 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
             {typeof(FluentValidation.ValidationException), HandleFluentValidationException},
             {typeof(NotFoundException), HandleNotFoundException},
             {typeof(UnauthorizedAccessException), HandleUnauthorizedAccessException},
-            {typeof(ArgumentNullException), HandleArgumentNullException}
+            {typeof(ArgumentNullException), HandleArgumentNullException},
+            // {typeof(AuthException), HandleAuthException}
         };
     }
 
@@ -72,6 +74,31 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
 
         context.ExceptionHandled = true;
     }
+
+
+    // private void HandleAuthException(ExceptionContext context)
+    // {
+    //
+    //     var exception = (AuthException)context.Exception;
+    //     
+    //     var details = new ProblemDetails
+    //     {
+    //         Status = StatusCodes.Status400BadRequest,
+    //         Title = "Invalid authentication or authorization",
+    //         Detail = exception.Message,
+    //         Instance = context.HttpContext.Request.Path,
+    //     };
+    //     
+    //     if (exception.AdditionalData != null)
+    //     {
+    //         details.Extensions["Errors"] = exception.AdditionalData;
+    //     }
+    //     
+    //     context.Result = new BadRequestObjectResult(details);
+    //
+    //     context.ExceptionHandled = true;
+    //
+    // }
 
 
     private void HandleUnauthorizedAccessException(ExceptionContext context)

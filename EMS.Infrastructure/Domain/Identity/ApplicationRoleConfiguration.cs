@@ -7,7 +7,7 @@ namespace EMS.Infrastructure.Domain.Identity;
 public class ApplicationRoleConfiguration : IEntityTypeConfiguration<ApplicationRole>
 {
     private const string AdminId = "40FEB7B4-B530-4EA2-B96F-582D88277E4B";
-    private const string ClientId = "34DE6D7C-4270-425B-987F-8D2CC41CD857";
+    private const string UserId = "34DE6D7C-4270-425B-987F-8D2CC41CD857";
     
     public void Configure(EntityTypeBuilder<ApplicationRole> builder)
     {
@@ -23,9 +23,9 @@ public class ApplicationRoleConfiguration : IEntityTypeConfiguration<Application
 
         var studentServiceRole = new ApplicationRole
         {
-            Id = ClientId,
-            Name = "USER",
-            NormalizedName = "STUDENTSERVICE",
+            Id = UserId,
+            Name = "User",
+            NormalizedName = "USER",
             ConcurrencyStamp = "a09ab67f-02d6-4910-8659-3385759d8037"
         };
         

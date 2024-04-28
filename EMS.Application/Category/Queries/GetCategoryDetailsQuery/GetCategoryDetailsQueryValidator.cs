@@ -5,8 +5,8 @@ namespace EMS.Application.Category.Queries.GetCategoryDetailsQuery;
 
 public class GetCategoryDetailsQueryValidator : AbstractValidator<GetCategoryDetailsQuery>
 {
-    public GetCategoryDetailsQueryValidator()
-    {
-        RuleFor(x => x.CategoryId).SetValidator(new GetDetailsValidator());
-    }
+    // public GetCategoryDetailsQueryValidator()
+    // {
+    //     RuleFor(x => x.CategoryId).SetValidator(new GetDetailsValidator());
+    // }
 }

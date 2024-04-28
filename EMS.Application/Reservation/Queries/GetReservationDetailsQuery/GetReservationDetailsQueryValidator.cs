@@ -5,8 +5,8 @@ namespace EMS.Application.Reservation.Queries.GetReservationDetailsQuery;
 
 public class GetReservationDetailsQueryValidator : AbstractValidator<GetReservationDetailsQuery>
 {
-    public GetReservationDetailsQueryValidator()
-    {
-        RuleFor(x => x.ReservationId).SetValidator(new GetDetailsValidator());
-    }
+    // public GetReservationDetailsQueryValidator()
+    // {
+    //     RuleFor(x => x.ReservationId).SetValidator(new GetDetailsValidator());
+    // }
 }
