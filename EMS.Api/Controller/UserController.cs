@@ -9,7 +9,7 @@ namespace EMS.Api.Controller;
 
 public class UserController : ApiControllerBase
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = AuthorizationConstants.Administrator)]
+    // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = AuthorizationConstants.Administrator)]
     [HttpPost]
     public async Task<ActionResult> CreateUser(CreateUserCommand command) => Ok(await Mediator.Send(command));
 }
