@@ -272,7 +272,7 @@ namespace EMS.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "34DE6D7C-4270-425B-987F-8D2CC41CD857", "a09ab67f-02d6-4910-8659-3385759d8037", "USER", "STUDENTSERVICE" },
+                    { "34DE6D7C-4270-425B-987F-8D2CC41CD857", "a09ab67f-02d6-4910-8659-3385759d8037", "User", "USER" },
                     { "40FEB7B4-B530-4EA2-B96F-582D88277E4B", "a09ab67f-02d6-4910-8659-3385759d8036", "Administrator", "ADMINISTRATOR" }
                 });
 

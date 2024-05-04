@@ -60,8 +60,8 @@ namespace EMS.Infrastructure.Migrations
                         {
                             Id = "34DE6D7C-4270-425B-987F-8D2CC41CD857",
                             ConcurrencyStamp = "a09ab67f-02d6-4910-8659-3385759d8037",
-                            Name = "USER",
-                            NormalizedName = "STUDENTSERVICE"
+                            Name = "User",
+                            NormalizedName = "USER"
                         });
                 });
 
