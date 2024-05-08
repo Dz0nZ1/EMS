@@ -20,7 +20,7 @@ public class ReservationService(IEmsDbContext dbContext) : IReservationService
         
         foreach (var eventId in reservationDto.EventIds)
         {
-            var eventEntity = await dbContext.Events.FirstOrDefaultAsync(x => x.Id == eventId, cancellationToken)
+            var eventEntity = await dbContext.Events.FirstOrDefaultAsync(x => x.Id.ToString() == eventId, cancellationToken)
                               ?? throw new NotFoundException($"Event with ID {eventId} not found");
 
             var reservationEvent = new ReservationEvent();
