@@ -26,6 +26,6 @@ jobs:
         run: |
           dotnet tool install --global dotnet-ef
           dotnet tool restore
-          dotnet ef database update --verbose --project EMS.Infrastructure --startup-project EMS.Api
+          dotnet ef database update --verbose --project .\EMS.Infrastructure\ --startup-project .\EMS.Api\
       - name: Test
         run: dotnet test --configuration Release EMS.sln --no-build --verbosity normal --collect:"XPlat Code Coverage" --logger trx --results-directory coverage
