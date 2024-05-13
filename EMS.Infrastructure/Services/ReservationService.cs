@@ -1,20 +1,23 @@
 using EMS.Application.Common.Dto.Reservation;
 using EMS.Application.Common.Exceptions;
+using EMS.Application.Common.Extensions;
 using EMS.Application.Common.interfaces;
 using EMS.Application.Common.Mappers.Reservation;
+using EMS.Application.Configuration;
 using EMS.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace EMS.Infrastructure.Services;
 
-public class ReservationService(IEmsDbContext dbContext) : IReservationService
+public class ReservationService(IEmsDbContext dbContext, IOptions<AesEncryptionConfiguration> aes) : IReservationService
 {
     public async Task<ReservationDetailsDto?> CreateAsync(CreateReservationDto reservationDto, CancellationToken cancellationToken)
     {
         var user = await dbContext.Users.FirstOrDefaultAsync(x => x.Id == reservationDto.UserId, cancellationToken)
                    ?? throw new NotFoundException("User not found");
-
-        var reservation = reservationDto.ToEntity().AddUser(user);
+        
+        var reservation = reservationDto.ToEntity().AddUser(user).AddCoupon(reservationDto.HasCoupon);
         
         await dbContext.Reservations.AddAsync(reservation, cancellationToken);
         

@@ -40,13 +40,13 @@ public class EmsDbContext(DbContextOptions<EmsDbContext> options): IdentityDbCon
         
     }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") != "Test")
-        {
-            optionsBuilder.UseNpgsql("Host=localhost;Username=postgres;Password=root;Database=EventMng");
-        }
-    }
+    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    // {
+    //     // if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") != "Test")
+    //     // {
+    //     //     optionsBuilder.UseNpgsql("Host=localhost;Username=postgres;Password=root;Database=EventMng");
+    //     // }
+    // }
     
     public DbSet<Event> Events => Set<Event>();
     public DbSet<Location> Locations => Set<Location>();

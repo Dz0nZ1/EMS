@@ -13,23 +13,26 @@ public class HeaderBasicAuthenticationSchemeHandler : AuthenticationHandler<Head
 {
     private readonly IEmsDbContext _dbContext;
     private readonly AesEncryptionConfiguration _aesEncryptionConfiguration;
+    private readonly IConfiguration _configuration;
     
     [Obsolete("Obsolete")]
-    public HeaderBasicAuthenticationSchemeHandler(IOptionsMonitor<HeaderBasicAuthenticationSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock, IEmsDbContext dbContext, IOptions<AesEncryptionConfiguration> aesEncryptionConfiguration) : base(options,
+    public HeaderBasicAuthenticationSchemeHandler(IOptionsMonitor<HeaderBasicAuthenticationSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock, IEmsDbContext dbContext, IOptions<AesEncryptionConfiguration> aesEncryptionConfiguration, IConfiguration configuration) : base(options,
         logger,
         encoder,
         clock)
     {
         _dbContext = dbContext;
         _aesEncryptionConfiguration = aesEncryptionConfiguration.Value;
+        _configuration = configuration;
     }
 
-    public HeaderBasicAuthenticationSchemeHandler(IOptionsMonitor<HeaderBasicAuthenticationSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder, IEmsDbContext dbContext, IOptions<AesEncryptionConfiguration> aesEncryptionConfiguration) : base(options,
+    public HeaderBasicAuthenticationSchemeHandler(IOptionsMonitor<HeaderBasicAuthenticationSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder, IEmsDbContext dbContext, IOptions<AesEncryptionConfiguration> aesEncryptionConfiguration, IConfiguration configuration) : base(options,
         logger,
         encoder)
     {
         _dbContext = dbContext;
         _aesEncryptionConfiguration = aesEncryptionConfiguration.Value;
+        _configuration = configuration;
     }
 
     protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
@@ -42,7 +45,7 @@ public class HeaderBasicAuthenticationSchemeHandler : AuthenticationHandler<Head
             var password = Request.Headers[Options.PasswordHeader]
                     .FirstOrDefault() ??
                 throw new InvalidOperationException("Missing Username header");
-
+            
             var user = Options.Users.SingleOrDefault(user => user.Username.Equals(username,
                         StringComparison.OrdinalIgnoreCase) &&
                     user.Password.Decrypt(_aesEncryptionConfiguration.Key).Equals(password,
