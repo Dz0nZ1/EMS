@@ -22,6 +22,10 @@ public static class DependencyInjection
         var dbConfiguration = new PostgresDbConfiguration();
         configuration.GetSection("PostgresDbConfiguration").Bind(dbConfiguration);
         
+        serviceCollection.AddDbContext<EmsDbContext>(
+            options => options.UseNpgsql(dbConfiguration.ConnectionString,
+                x => x.MigrationsAssembly(typeof(EmsDbContext).Assembly.FullName))
+        );
         serviceCollection.AddScoped<IEmsDbContext>(provider => provider.GetRequiredService<EmsDbContext>());
         
         //Business logic
