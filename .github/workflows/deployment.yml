@@ -17,10 +17,10 @@ jobs:
         run: az acr login --name emsapplication --username ${{ secrets.AZURE_REGISTRY_USERNAME }} --password ${{ secrets.AZURE_REGISTRY_PASSWORD }}
 
       - name: Building Docker image
-        run: docker build -f EMS.Api/Dockerfile --force-rm -t emsapplication.azurecr.io/emsapplication:latest .
+        run: docker build -f EMS.Api/Dockerfile --force-rm -t emsapplication.azurecr.io/emsapplication:v1.0 .
           
       - name: Pushing docker image
-        run: docker push emsapplication.azurecr.io/emsapplication:latest
+        run: docker push emsapplication.azurecr.io/emsapplication:v1.0
         
       - name: Running the container
-        run: docker run -d -p 8080:8080 emsapplication.azurecr.io/emsapplication:latest 
+        run: docker run -d -p 8080:8080 emsapplication.azurecr.io/emsapplication:v1.0 

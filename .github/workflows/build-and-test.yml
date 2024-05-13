@@ -21,7 +21,7 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release EMS.sln
       - name: Entity Framework installation
-        run: dotnet tool install -global dotnet-ef
+        run: dotnet tool install --global dotnet-ef
       - name: Database update
         working-directory: EMS
         run: dotnet ef database update --verbose --project EMS.Infrastructure --startup-project EMS.Api
