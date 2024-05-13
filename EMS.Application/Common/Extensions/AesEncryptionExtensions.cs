@@ -61,7 +61,7 @@ public static class AesEncryptionExtensions
 
             using (MemoryStream memoryStream = new MemoryStream(buffer))
             {
-                using (CryptoStream cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Write))
+                using (CryptoStream cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
                 {
                     using (StreamReader streamReader = new StreamReader(cryptoStream))
                     {
