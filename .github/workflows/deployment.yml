@@ -16,11 +16,14 @@ jobs:
       - name: Login to Azure Container Registry
         run: az acr login --name emsapplication --username ${{ secrets.AZURE_USERNAME }} --password ${{ secrets.AZURE_PASSWORD }}
 
-      - name: Building Docker image
+      - name: Building docker image
         run: docker build -f EMS.Api/Dockerfile --force-rm -t emsapplication.azurecr.io/emsapplicationcontainer123:v1 .
           
       - name: Pushing docker image
         run: docker push emsapplication.azurecr.io/emsapplicationcontainer123:v1
         
-      - name: Running the container
+      - name: Running the docker container
         run: docker run -d -p 8080:8080 emsapplication.azurecr.io/emsapplicationcontainer123:v1
+        
+      - name: Create container in Azure
+        run: az container create --resource-group ems-resource-group --name emsapplication --image emsapplication.azurecr.io/emsapplicationcontainer123:v1 --dns-name-label myapp --ports 8080
