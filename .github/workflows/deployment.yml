@@ -24,12 +24,3 @@ jobs:
         
       - name: Running the docker container
         run: docker run -d -p 8080:8080 emsapplication.azurecr.io/emsapplicationcontainer123:v1
-        
-      - name: Azure login
-        run: az login
-        
-      - name: Setup
-        run: az account set -s "4556c0f7-1e8d-43fb-80a1-62284982e07b"
-        
-      - name: Create container in Azure
-        run: az container create --resource-group ems-resource-group --name emsapplication --image emsapplication.azurecr.io/emsapplicationcontainer123:v1 --dns-name-label myapp --ports 8080
