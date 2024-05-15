@@ -25,10 +25,3 @@ jobs:
       - name: Running the docker container
         run: docker run -d -p 8080:8080 emsapplication.azurecr.io/emsapplicationcontainer123:v2
         
-      - name: Creating Azure resource group
-        run: az group create --name newemsresourcegroup --location eastus
-        
-      - name: Creating Azure container
-        run:  az container create --resource-group newemsresourcegroup --name EmsContainer --image emsapplication.azurecr.io/emsapplicationcontainer123:v2 --dns-name-label aci-ems --ports 80
- 
-        
